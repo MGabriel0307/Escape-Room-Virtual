@@ -1,19 +1,20 @@
 #ifndef CRONOMETRU_H
 #define CRONOMETRU_H
 
-#include <chrono>
+#include <iostream>
 using namespace std;
-using namespace chrono;
 
 class Cronometru {
 private:
-    steady_clock::time_point start;
-    int durata; // secunde
+    int timp; // in secunde
 
 public:
-    Cronometru(int durata);
-    void startCronometru();
-    bool esteTimpulExpirat() const;
+    Cronometru(int timpInitial = 60);
+    void pornesteCronometru();
+    void scadeTimp(int secunde);
+    void adaugaTimp(int secunde);
+    int getTimpRamas() const;
+    bool timpExpirat() const;
 };
 
 #endif // CRONOMETRU_H
