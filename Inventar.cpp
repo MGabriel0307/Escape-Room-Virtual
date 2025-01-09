@@ -6,7 +6,7 @@ void Inventar::adaugaObiect(const Obiect& obiect) {
     obiecte.push_back(obiect);
 }
 
-bool Inventar::areObiect(const string& nume) const {
+bool Inventar::contineObiect(const string& nume) const {
     for (const auto& obiect : obiecte) {
         if (obiect.getNume() == nume) {
             return true;
@@ -16,7 +16,11 @@ bool Inventar::areObiect(const string& nume) const {
 }
 
 void Inventar::afiseazaInventar() const {
-    cout << "Obiecte în inventar:\n";
+    if (obiecte.empty()) {
+        cout << "Inventarul este gol.\n";
+        return;
+    }
+    cout << "Obiecte in inventar:\n";
     for (const auto& obiect : obiecte) {
         cout << "- " << obiect.getNume() << ": " << obiect.getDescriere() << endl;
     }
