@@ -11,7 +11,7 @@ private:
 
 public:
     Personaj(const string& nume, int energie = 100);
-
+    void afis();
     void reduceEnergie(int valoare);
     bool esteObosit() const;
     string getNume() const;
