@@ -1,13 +1,43 @@
 #include "Cronometru.h"
+#include <chrono>
+#include <thread>
 
-Cronometru::Cronometru(int durata) : durata(durata) {}
+using namespace std;
+using namespace chrono;
 
-void Cronometru::startCronometru() {
-    start = steady_clock::now();
+Cronometru::Cronometru(int timpInitial) : timp(timpInitial) {}
+
+void Cronometru::pornesteCronometru() {
+    auto start = steady_clock::now();
+    while (timp > 0) {
+        this_thread::sleep_for(seconds(1));
+        auto end = steady_clock::now();
+        int elapsed = duration_cast<seconds>(end - start).count();
+        timp -= elapsed;
+        start = end;
+
+        if (timp <= 0) {
+            timp = 0;
+            cout << "Timpul a expirat!\n";
+            break;
+        }
+        cout << "Timp ramas: " << timp << " secunde\n";
+    }
 }
 
-bool Cronometru::esteTimpulExpirat() const {
-    auto acum = steady_clock::now();
-    auto secundeTrecute = duration_cast<seconds>(acum - start).count();
-    return secundeTrecute > durata;
+void Cronometru::scadeTimp(int secunde) {
+    timp -= secunde;
+    if (timp < 0) timp = 0;
+}
+
+void Cronometru::adaugaTimp(int secunde) {
+    timp += secunde;
+}
+
+int Cronometru::getTimpRamas() const {
+    return timp;
+}
+
+bool Cronometru::timpExpirat() const {
+    return timp <= 0;
 }
