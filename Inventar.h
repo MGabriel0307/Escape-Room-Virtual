@@ -3,6 +3,7 @@
 
 #include "Obiect.h"
 #include <vector>
+#include <string>
 using namespace std;
 
 class Inventar {
@@ -11,7 +12,7 @@ private:
 
 public:
     void adaugaObiect(const Obiect& obiect);
-    bool areObiect(const string& nume) const;
+    bool contineObiect(const string& nume) const;
     void afiseazaInventar() const;
 };
 
