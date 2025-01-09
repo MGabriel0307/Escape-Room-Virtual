@@ -1,4 +1,5 @@
 #include "Personaj.h"
+#include<iostream>
 
 Personaj::Personaj(const string& nume, int energie)
     : nume(nume), energie(energie) {}
@@ -9,7 +10,7 @@ void Personaj::reduceEnergie(int valoare) {
 }
 
 bool Personaj::esteObosit() const {
-    return energie <= 0;
+    return energie <= 0;a
 }
 
 string Personaj::getNume() const {
@@ -18,4 +19,8 @@ string Personaj::getNume() const {
 
 int Personaj::getEnergie() const {
     return energie;
+}
+void Personaj::afis() {
+    std::cout << "Energie este " << " "<< energie << endl;
+    
 }
